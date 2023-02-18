@@ -1,4 +1,4 @@
-# hd-error-code-inspector
+# Harley Davidson error code inspector
 Visualizador de códigos de erro da Harley Davidson. Funções:
 - Sistema de cadastro e login de usuários
 - Exibição dos detalhes do código de erro e das suas respectivas siglas
