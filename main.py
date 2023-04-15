@@ -6,27 +6,23 @@ from erros import lista_erros
 from siglas import lista_siglas
 import images
 from winsound import Beep
-from time import sleep
 import sqlite3
 
 resumo = {}
 motorcycles_list = [1]
-bank = sqlite3.connect('Harley.db')
+bank = sqlite3.connect('databases\Harley.db')
 cursor = bank.cursor()
-
 
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
         super(Ui, self).__init__()        
-        uic.loadUi('window.ui', self) 
+        uic.loadUi(r'interfaces\window.ui', self) 
         self.about = about()
         self.EditMotorcycles = EditMotorcycles()
         
-       
         self.submit_code.clicked.connect(self.show_line1) 
         self.submit_code.clicked.connect(self.resumao)
         self.save_log.clicked.connect(self.save_txt)
-        
         
         self.edit_motorcycles_button.clicked.connect(self.EditMotorcycles.show)
         self.edit_motorcycles_button.clicked.connect(self.EditMotorcycles.update)
@@ -34,7 +30,6 @@ class Ui(QtWidgets.QMainWindow):
         self.about_btn.clicked.connect(self.bipe)
         
         self.comboBox.currentIndexChanged.connect(lambda x: self.log_area.clear())
-
         self.code_input.setStyleSheet('background-color: rgb(50,50,50); border-radius:10px; color: rgb(201,52,19); font-size:24px; font-weight: bold; text-align: center')
 
     
@@ -49,7 +44,6 @@ class Ui(QtWidgets.QMainWindow):
                 resumo.update({cod: lista_erros[cod]})              
         else:
             Beep(400,400)
-
         try:
                 for a in lista_siglas:
                         if a in lista_erros[cod]:
@@ -87,14 +81,14 @@ class Ui(QtWidgets.QMainWindow):
 class about(QtWidgets.QMainWindow):
     def __init__(self):
         super(about, self).__init__()        
-        uic.loadUi('about.ui', self)
+        uic.loadUi(r"interfaces\about.ui", self)
 
-        self.setWindowIcon(QtGui.QIcon('window_logo.png'))
+        self.setWindowIcon(QtGui.QIcon('images\window_logo.png'))
         
 class Login(QtWidgets.QMainWindow):
     def __init__(self):
         super(Login, self).__init__()        
-        uic.loadUi('user_login.ui', self)
+        uic.loadUi(r"interfaces\user_login.ui", self)
         self.Ui = Ui()
         self.EditMotorcycles = EditMotorcycles()
     
@@ -147,7 +141,7 @@ class Login(QtWidgets.QMainWindow):
 class EditMotorcycles(QtWidgets.QMainWindow):
     def __init__(self):
         super(EditMotorcycles, self).__init__()        
-        uic.loadUi('edit_motorcycles.ui', self)
+        uic.loadUi(r'interfaces\edit_motorcycles.ui', self)
         self.Ui = Ui
         self.update()
 
@@ -180,4 +174,4 @@ class EditMotorcycles(QtWidgets.QMainWindow):
 
 app = QtWidgets.QApplication(sys.argv)     
 window = Login()                            
-app.exec_()   
+app.exec_()
