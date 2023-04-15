@@ -1,7 +1,7 @@
 # Harley Davidson error code inspector
 
 ## About
-> A Harley Davidson motorcycle error code inspector 
+> A Harley Davidson motorcycle error code inspector.
 
 ## Functions
 > Sign up/in system
